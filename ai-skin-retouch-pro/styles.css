@@ -1,0 +1,90 @@
+
+/* 
+  styles.css
+  Styling for the AI Skin Retouch Pro panel.
+  Uses UXP CSS variables to adapt to Photoshop's theme (dark/light mode).
+*/
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: var(--uxp-host-text-color);
+  background-color: var(--uxp-host-background-color);
+  overflow: hidden; /* Prevents scrollbars */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 0.8em;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.action-button {
+  background-color: #4CAF50; /* A pleasant green */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.action-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.action-button:active {
+  transform: scale(0.98);
+  background-color: #3e8e41;
+}
+
+.action-button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.status-text {
+  font-size: 0.85em;
+  min-height: 40px; /* Reserve space for two lines of text */
+  padding: 5px;
+  width: 90%;
+  opacity: 0.8;
+  word-wrap: break-word;
+}
+
+.status-text.error {
+  color: var(--uxp-host-color-red);
+}
+
+.status-text.success {
+  color: #4CAF50;
+}
+   

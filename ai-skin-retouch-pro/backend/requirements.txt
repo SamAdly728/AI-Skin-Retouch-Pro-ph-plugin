@@ -1,0 +1,10 @@
+
+# requirements.txt
+# Dependencies for the Python FastAPI backend.
+# Install them using: pip install -r requirements.txt
+
+fastapi
+uvicorn[standard]
+Pillow
+python-multipart
+   

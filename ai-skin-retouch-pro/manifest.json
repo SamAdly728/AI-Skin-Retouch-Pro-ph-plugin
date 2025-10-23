@@ -1,0 +1,38 @@
+
+{
+  "id": "com.example.aiskinretouchpro",
+  "name": "AI Skin Retouch Pro",
+  "version": "1.0.0",
+  "main": "index.html",
+  "host": [
+    {
+      "app": "photoshop",
+      "minVersion": "23.0.0"
+    }
+  ],
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "aiSkinRetouchProPanel",
+      "label": {
+        "default": "AI Skin Retouch Pro"
+      },
+      "minimumSize": { "width": 230, "height": 200 },
+      "maximumSize": { "width": 500, "height": 600 },
+      "preferredSize": { "width": 250, "height": 300 },
+      "icons": [
+        { "width": 23, "height": 23, "path": "icon.png", "scale": [1, 2], "theme": ["darkest", "dark", "light", "lightest", "all"] },
+        { "width": 48, "height": 48, "path": "icon.png", "scale": [1, 2], "theme": ["darkest", "dark", "light", "lightest", "all"] }
+      ]
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": [
+        "http://localhost:8000"
+      ]
+    },
+    "localFileSystem": "temporary"
+  }
+}
+   

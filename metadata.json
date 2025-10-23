@@ -1,0 +1,5 @@
+{
+  "name": "AI Skin Retouch Pro",
+  "description": "An AI-powered Photoshop plugin that automatically detects and retouches skin imperfections in portrait images using a Python FastAPI backend for processing.",
+  "requestFramePermissions": []
+}
