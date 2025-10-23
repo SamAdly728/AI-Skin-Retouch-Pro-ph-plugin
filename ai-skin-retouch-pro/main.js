@@ -1,4 +1,3 @@
-
 // main.js
 // Core logic for the AI Skin Retouch Pro UXP Plugin
 
@@ -9,9 +8,8 @@ const uxp = require("uxp");
 const { localFileSystem } = uxp.storage;
 
 // 2. BACKEND CONFIGURATION
-// IMPORTANT: Replace this URL with your own Render.com backend URL.
-// Your Render URL will look something like: https://ai-skin-retouch-pro.onrender.com/retouch
-const BACKEND_URL = "https://your-app-name.onrender.com/retouch";
+// This URL now points to your live backend on Render.
+const BACKEND_URL = "https://ai-skin-retouch-pro-ph-plugin.onrender.com/retouch";
 
 // 3. UI ELEMENT REFERENCES
 const retouchBtn = document.getElementById("retouchBtn");
@@ -53,11 +51,6 @@ async function performRetouch() {
     });
 
     try {
-      // Pre-flight check for the placeholder URL
-      if (BACKEND_URL.includes("your-app-name.onrender.com")) {
-        throw new Error("Backend URL is not configured. Please update BACKEND_URL in main.js.");
-      }
-      
       setButtonDisabled(true);
       updateStatus("Starting process...");
 
