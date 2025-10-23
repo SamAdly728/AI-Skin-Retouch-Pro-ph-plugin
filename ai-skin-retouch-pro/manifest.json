@@ -29,10 +29,10 @@
   "requiredPermissions": {
     "network": {
       "domains": [
-        "http://localhost:8000"
+        "http://localhost:8000",
+        "https://*.onrender.com"
       ]
     },
     "localFileSystem": "temporary"
   }
 }
-   

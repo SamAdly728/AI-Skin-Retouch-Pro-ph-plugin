@@ -9,7 +9,9 @@ const uxp = require("uxp");
 const { localFileSystem } = uxp.storage;
 
 // 2. BACKEND CONFIGURATION
-const BACKEND_URL = "http://localhost:8000/retouch";
+// IMPORTANT: Replace this URL with your own Render.com backend URL.
+// Your Render URL will look something like: https://ai-skin-retouch-pro.onrender.com/retouch
+const BACKEND_URL = "https://your-app-name.onrender.com/retouch";
 
 // 3. UI ELEMENT REFERENCES
 const retouchBtn = document.getElementById("retouchBtn");
@@ -51,6 +53,11 @@ async function performRetouch() {
     });
 
     try {
+      // Pre-flight check for the placeholder URL
+      if (BACKEND_URL.includes("your-app-name.onrender.com")) {
+        throw new Error("Backend URL is not configured. Please update BACKEND_URL in main.js.");
+      }
+      
       setButtonDisabled(true);
       updateStatus("Starting process...");
 
@@ -71,6 +78,7 @@ async function performRetouch() {
       const tempFile = await tempFolder.createFile("temp_layer.jpg", { overwrite: true });
       const saveToken = localFileSystem.createSessionToken(tempFile);
 
+      // This command saves a flattened copy of the specified layer to a temp file
       const saveCommand = {
         _obj: "save",
         as: {
@@ -81,8 +89,8 @@ async function performRetouch() {
         },
         in: { _path: saveToken, _kind: "local" },
         documentID: app.activeDocument.id,
-        copy: true, // Important: saves a flattened copy of the layer
-        layer: { _id: layer.id }, // Specify which layer to save
+        copy: true, 
+        layer: { _id: layer.id },
         _options: { dialogOptions: "never" },
       };
       
@@ -115,13 +123,13 @@ async function performRetouch() {
       await processedFile.write(processedImageBytes, { format: uxp.storage.formats.binary });
       const placeToken = localFileSystem.createSessionToken(processedFile);
 
+      // This command places the retouched image as a new smart object layer
       const placeCommand = {
         _obj: "placeEvent",
         target: {
           _path: placeToken,
           _kind: "local",
         },
-        // We don't link, we embed the file
         linked: false,
       };
 
@@ -142,14 +150,3 @@ async function performRetouch() {
 
 // 8. ATTACH EVENT LISTENER
 retouchBtn.addEventListener("click", performRetouch);
-
-/*
-  INSTRUCTIONS FOR PHOTOSHOP PLUGIN LOADING:
-  1. Open Adobe Photoshop.
-  2. Go to the "Plugins" menu and select "Development" > "Developer Tool".
-  3. In the UXP Developer Tool window, click on "Add Plugin...".
-  4. Navigate to this `ai-skin-retouch-pro` folder and select the `manifest.json` file.
-  5. The plugin should now appear in the list. Click the "▶️" (Load) button next to it.
-  6. The "AI Skin Retouch Pro" panel will open in Photoshop.
-*/
-   
